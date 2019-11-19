@@ -1,0 +1,74 @@
+bookmarks = []
+
+answer = 0
+
+while answer != 5:
+    answer = int(input("""
+    MENU (Select 1)
+    
+    1. Add Bookmark
+    2. Edit Bookmark
+    3. Delete Bookmark
+    4. View Bookmark
+    
+    Input 5 to terminate the program. """))
+
+    if answer == 1:
+        print("--ADD BOOKMARK--")
+        inputs = int(input("""How many Bookmarks do you wish to add?
+"""))
+
+        for iteration in range(inputs):
+            bookmarks.append(input("> "))
+
+    elif answer == 2:
+        print("--EDIT BOOKMARK--")
+        if len(bookmarks) == 0:
+            print("No Existing Bookmarks Yet!")
+        else:
+            print(bookmarks)
+            check = 0
+            while check == 0:
+                editBookmark = input("Enter the Name of the Bookmark you Wish to Edit: ")
+
+                if editBookmark in bookmarks:
+                    newBookmark = input("Enter the new Bookmark: ")
+                    bookmarks.remove(editBookmark)
+                    bookmarks.append(newBookmark)
+                    print(bookmarks)
+                    print("Updated Successfully!")
+                    
+                    answer = input("Do you wish to Edit Again? (Y/N): ").lower()
+                    
+                    if answer == "y":
+                        continue
+                    elif answer == "n":
+                        check = 1
+                else:
+                    print("The Bookmark Doesn't Exist!")
+    
+    elif answer == 3:
+        print("--DELETE BOOKMARK--")
+        print(bookmarks) 
+        check = 0 
+        while check == 0:
+            oldBookmark = input("Enter the Name of the Bookmark you Wish to Delete: ")
+            
+            if oldBookmark in bookmarks:
+                bookmarks.remove(oldBookmark)
+                print(bookmarks)
+                print("Deleted Successfully!")
+                
+                answer = input("Do you wish to Delete Again? (Y/N): ").lower()
+                    
+                if answer == "y":
+                    continue
+                elif answer == "n":
+                    check = 1
+                    
+    elif answer == 4:
+        print("--VIEW BOOKMARK--")
+        print(bookmarks)
+        
+    elif answer == 5:
+        print("Thank You for Using the System!")
